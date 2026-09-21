@@ -3,6 +3,8 @@ const projects = [
     id: 1,
     slug: "cinevault",
     title: "CineVault",
+    date: "2026-01-15",
+    featured: true,
     description:
       "A responsive movie discovery application built with React and the OMDb API.",
     details:
@@ -14,6 +16,11 @@ const projects = [
       "REST API",
     ],
     image: "/assets/cinevault.png",
+    screenshots: [
+      "/assets/cinevault-home.png",
+      "/assets/cinevault-search.png",
+      "/assets/cinevault-details.png",
+    ],
     github: "https://github.com/Hotrodtymn/CineVault-React",
     live: "",
   },
@@ -22,6 +29,8 @@ const projects = [
     id: 2,
     slug: "library",
     title: "Library",
+    date: "2026-03-15",
+    featured: false,
     description:
       "A responsive online library application built with React, React Router, and reusable components.",
     details:
@@ -33,6 +42,12 @@ const projects = [
       "React Router",
     ],
     image: "/assets/library.png",
+    screenshots: [
+      "/assets/library-home.png",
+      "/assets/library-books.png",
+      "/assets/library-details.png",
+      "/assets/library-cart.png",
+    ],
     github: "",
     live: "",
   },
@@ -41,6 +56,8 @@ const projects = [
     id: 3,
     slug: "rockstreamer",
     title: "Rockstreamer",
+    date: "2026-05-15",
+    featured: true,
     description:
       "A modern video streaming platform built with React and designed around a unique media-focused user experience.",
     details:
@@ -51,6 +68,10 @@ const projects = [
       "CSS",
     ],
     image: "/assets/rockstreamer.png",
+    screenshots: [
+      "/assets/rockstreamer-home.png",
+      "/assets/rockstreamer-browse.png",
+    ],
     github: "",
     live: "",
   },
@@ -59,6 +80,8 @@ const projects = [
     id: 4,
     slug: "lawn-care",
     title: "Thomas Babb Lawn Care",
+    date: "2025-10-15",
+    featured: false,
     description:
       "A professional business website designed to showcase lawn-care services and make it easy for customers to get in touch.",
     details:
@@ -69,6 +92,10 @@ const projects = [
       "JavaScript",
     ],
     image: "/assets/lawn-care.png",
+    screenshots: [
+      "/assets/lawn-care-home.png",
+      "/assets/lawn-care-services.png",
+    ],
     github: "",
     live: "https://www.thomasbabblawncare.com/",
   },
