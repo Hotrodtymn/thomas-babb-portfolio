@@ -8,10 +8,29 @@ html {
   scroll-behavior: smooth;
 }
 
+:root {
+  --bg-primary: #070b14;
+  --bg-secondary: #0d1422;
+  --bg-card: #111a2b;
+
+  --border: #1d2a40;
+  --border-light: #263650;
+
+  --blue: #3b82f6;
+  --blue-light: #60a5fa;
+  --blue-dark: #2563eb;
+
+  --text-primary: #f8fafc;
+  --text-secondary: #94a3b8;
+  --text-muted: #64748b;
+
+  --shadow-blue: rgba(59, 130, 246, 0.25);
+}
+
 body {
   font-family: Arial, sans-serif;
-  background: #0f0f0f;
-  color: #ffffff;
+  background: var(--bg-primary);
+  color: var(--text-primary);
 }
 
 a {
@@ -21,6 +40,7 @@ a {
 
 button,
 input,
-textarea {
+textarea,
+select {
   font: inherit;
 }

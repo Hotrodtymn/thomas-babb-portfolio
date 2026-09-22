@@ -67,17 +67,21 @@ const Home = () => {
       <FadeIn>
   <section className="services">
     <div className="services__header">
-      <p className="page__eyebrow">
-        WHAT I DO
-      </p>
+  <div>
+    <p className="page__eyebrow">
+      WHAT I DO
+    </p>
+  </div>
 
-      <h2>Building for the web.</h2>
+  <div>
+    <h2>Building for the web.</h2>
 
-      <p>
-        I focus on creating modern, responsive, and
-        user-focused web experiences.
-      </p>
-    </div>
+    <p>
+      I focus on creating modern, responsive, and
+      user-focused web experiences.
+    </p>
+  </div>
+</div>
 
     <div className="services__grid">
       {services.map((service) => (
