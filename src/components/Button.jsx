@@ -7,6 +7,7 @@ const Button = ({
   href,
   variant = "primary",
   download = false,
+  onClick,
 }) => {
   const className = `button button--${variant}`;
 
@@ -15,6 +16,7 @@ const Button = ({
       <Link
         to={to}
         className={className}
+        onClick={onClick}
       >
         {children}
       </Link>
@@ -29,6 +31,7 @@ const Button = ({
         download={download}
         target={download ? undefined : "_blank"}
         rel={download ? undefined : "noreferrer"}
+        onClick={onClick}
       >
         {children}
       </a>
@@ -36,7 +39,11 @@ const Button = ({
   }
 
   return (
-    <button className={className}>
+    <button
+      type="button"
+      className={className}
+      onClick={onClick}
+    >
       {children}
     </button>
   );

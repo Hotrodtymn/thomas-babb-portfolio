@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-const Footer = () => {
+const Footer = ({ onContactClick }) => {
   return (
     <footer className="footer">
       <div className="footer__container">
@@ -24,7 +24,12 @@ const Footer = () => {
 
             <Link to="/about">About</Link>
 
-            <Link to="/contact">Contact</Link>
+            <button
+              type="button"
+              onClick={onContactClick}
+            >
+              Contact
+            </button>
           </div>
 
           <div className="footer__social">

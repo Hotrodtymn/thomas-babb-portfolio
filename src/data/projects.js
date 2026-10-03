@@ -1,9 +1,62 @@
 const projects = [
   {
+    id: 5,
+    slug: "summarist",
+    title: "Summarist",
+    date: "2026-09-28",
+    featured: true,
+    description:
+      "A modern book summary platform built with React, Firebase authentication, REST APIs, and audio playback.",
+    details:
+      "Summarist is a responsive book summary application inspired by modern reading platforms. The project integrates external APIs to dynamically load book content, Firebase authentication for account management, Google sign-in, and an audio player for listening to book descriptions and summaries. The application focuses on reusable React components, responsive design, routing, authentication, and API-driven content.",
+    technologies: [
+      "React",
+      "JavaScript",
+      "CSS",
+      "Firebase",
+      "REST API",
+    ],
+    image: "/assets/summarist.png",
+    screenshots: [
+      "/assets/summarist-home.png",
+      "/assets/summarist-books.png",
+      "/assets/summarist-details.png",
+    ],
+    github: "",
+    live: "https://summarist-ebon.vercel.app/",
+  },
+
+  {
+    id: 6,
+    slug: "youtube-clone",
+    title: "YouTube Clone",
+    date: "2026-09-27",
+    featured: true,
+    description:
+      "A responsive video platform built with React that recreates the core experience of a modern video streaming website.",
+    details:
+      "The YouTube Clone is a React-based video platform focused on recreating the structure and functionality of a modern video streaming experience. The project uses reusable components, responsive layouts, navigation, video-focused content displays, and a media-oriented user interface.",
+    technologies: [
+      "React",
+      "JavaScript",
+      "CSS",
+      "REST API",
+    ],
+    image: "/assets/youtube-clone.png",
+    screenshots: [
+      "/assets/youtube-clone-home.png",
+      "/assets/youtube-clone-browse.png",
+      "/assets/youtube-clone-video.png",
+    ],
+    github: "",
+    live: "https://youtube-clone-mmn7.vercel.app/",
+  },
+
+  {
     id: 1,
     slug: "cinevault",
     title: "CineVault",
-    date: "2026-01-15",
+    date: "2026-09-26",
     featured: true,
     description:
       "A responsive movie discovery application built with React and the OMDb API.",
@@ -22,6 +75,30 @@ const projects = [
       "/assets/cinevault-details.png",
     ],
     github: "https://github.com/Hotrodtymn/CineVault-React",
+    live: "https://cinevault-sage-alpha.vercel.app/",
+  },
+
+  {
+    id: 3,
+    slug: "rockstreamer",
+    title: "Rockstreamer",
+    date: "2026-05-15",
+    featured: true,
+    description:
+      "A modern video streaming platform built with React and designed around a unique media-focused user experience.",
+    details:
+      "Rockstreamer is a video streaming platform concept focused on creating a modern, visually engaging experience for discovering and watching content. The project explores component-based design and responsive layouts in React.",
+    technologies: [
+      "React",
+      "JavaScript",
+      "CSS",
+    ],
+    image: "/assets/rockstreamer.png",
+    screenshots: [
+      "/assets/rockstreamer-home.png",
+      "/assets/rockstreamer-browse.png",
+    ],
+    github: "",
     live: "",
   },
 
@@ -50,54 +127,6 @@ const projects = [
     ],
     github: "",
     live: "",
-  },
-
-  {
-    id: 3,
-    slug: "rockstreamer",
-    title: "Rockstreamer",
-    date: "2026-05-15",
-    featured: true,
-    description:
-      "A modern video streaming platform built with React and designed around a unique media-focused user experience.",
-    details:
-      "Rockstreamer is a video streaming platform concept focused on creating a modern, visually engaging experience for discovering and watching content. The project explores component-based design and responsive layouts in React.",
-    technologies: [
-      "React",
-      "JavaScript",
-      "CSS",
-    ],
-    image: "/assets/rockstreamer.png",
-    screenshots: [
-      "/assets/rockstreamer-home.png",
-      "/assets/rockstreamer-browse.png",
-    ],
-    github: "",
-    live: "",
-  },
-
-  {
-    id: 4,
-    slug: "lawn-care",
-    title: "Thomas Babb Lawn Care",
-    date: "2025-10-15",
-    featured: false,
-    description:
-      "A professional business website designed to showcase lawn-care services and make it easy for customers to get in touch.",
-    details:
-      "This project is a professional website for Thomas Babb Lawn Care. It focuses on presenting services, promotional information, and contact options through a clean and responsive business website.",
-    technologies: [
-      "HTML",
-      "CSS",
-      "JavaScript",
-    ],
-    image: "/assets/lawn-care.png",
-    screenshots: [
-      "/assets/lawn-care-home.png",
-      "/assets/lawn-care-services.png",
-    ],
-    github: "",
-    live: "https://www.thomasbabblawncare.com/",
   },
 ];
 

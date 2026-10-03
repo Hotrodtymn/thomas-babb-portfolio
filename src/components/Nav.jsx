@@ -2,11 +2,16 @@ import React, { useState } from "react";
 import { NavLink, Link } from "react-router-dom";
 import { FaGithub, FaLinkedin } from "react-icons/fa";
 
-const Nav = () => {
+const Nav = ({ onContactClick }) => {
   const [menuOpen, setMenuOpen] = useState(false);
 
   const closeMenu = () => {
     setMenuOpen(false);
+  };
+
+  const handleContactClick = () => {
+    closeMenu();
+    onContactClick();
   };
 
   const getNavClass = ({ isActive }) =>
@@ -24,17 +29,18 @@ const Nav = () => {
         </Link>
 
         <button
-  className={`nav__menu-button ${
-    menuOpen ? "nav__menu-button--open" : ""
-  }`}
-  onClick={() => setMenuOpen(!menuOpen)}
-  aria-label="Toggle navigation menu"
-  aria-expanded={menuOpen}
->
-  <span></span>
-  <span></span>
-  <span></span>
-</button>
+          type="button"
+          className={`nav__menu-button ${
+            menuOpen ? "nav__menu-button--open" : ""
+          }`}
+          onClick={() => setMenuOpen(!menuOpen)}
+          aria-label="Toggle navigation menu"
+          aria-expanded={menuOpen}
+        >
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
 
         <div
           className={`nav__links ${
@@ -66,13 +72,13 @@ const Nav = () => {
             About
           </NavLink>
 
-          <NavLink
-            to="/contact"
-            className={getNavClass}
-            onClick={closeMenu}
+          <button
+            type="button"
+            className="nav__link nav__contact-button"
+            onClick={handleContactClick}
           >
             Contact
-          </NavLink>
+          </button>
 
           <div className="nav__social">
             <a

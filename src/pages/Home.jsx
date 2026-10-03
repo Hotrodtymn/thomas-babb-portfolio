@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 
 import projects from "../data/projects";
@@ -6,9 +6,12 @@ import ProjectCard from "../components/ProjectCard";
 import Button from "../components/Button";
 import FadeIn from "../components/FadeIn";
 import technologies from "../data/technologies";
-import services from "../data/services";
+import Contact from "./Contact";
 
 const Home = () => {
+  const [isContactOpen, setIsContactOpen] =
+    useState(false);
+
   const featuredProjects = projects.filter(
     (project) => project.featured
   );
@@ -20,8 +23,6 @@ const Home = () => {
           <p className="home__eyebrow">
             FRONTEND SOFTWARE DEVELOPER
           </p>
-
-        
 
           <h1 className="home__title">
             Hi, I'm Thomas Babb.
@@ -39,7 +40,9 @@ const Home = () => {
             </Button>
 
             <Button
-              to="/contact"
+              onClick={() =>
+                setIsContactOpen(true)
+              }
               variant="secondary"
             >
               Contact Me
@@ -64,47 +67,6 @@ const Home = () => {
           </div>
         </div>
       </section>
-      <FadeIn>
-  <section className="services">
-    <div className="services__header">
-  <div>
-    <p className="page__eyebrow">
-      WHAT I DO
-    </p>
-  </div>
-
-  <div>
-    <h2>Building for the web.</h2>
-
-    <p>
-      I focus on creating modern, responsive, and
-      user-focused web experiences.
-    </p>
-  </div>
-</div>
-
-    <div className="services__grid">
-      {services.map((service) => (
-        <article
-  key={service.id}
-  className="service-card"
->
-  <span className="service-card__number">
-    {String(service.id).padStart(2, "0")}
-  </span>
-
-  <div className="service-card__icon">
-    <service.icon />
-  </div>
-
-  <h3>{service.title}</h3>
-
-  <p>{service.description}</p>
-</article>
-      ))}
-    </div>
-  </section>
-</FadeIn>
 
       <FadeIn>
         <section className="featured">
@@ -114,14 +76,15 @@ const Home = () => {
                 SELECTED WORK
               </p>
 
-<h2>Featured Projects</h2>
+              <h2>Featured Projects</h2>
 
-<p className="featured__count">
-  {featuredProjects.length}{" "}
-  {featuredProjects.length === 1
-    ? "Featured Project"
-    : "Featured Projects"}
-</p>            </div>
+              <p className="featured__count">
+                {featuredProjects.length}{" "}
+                {featuredProjects.length === 1
+                  ? "Featured Project"
+                  : "Featured Projects"}
+              </p>
+            </div>
 
             <Link
               to="/projects"
@@ -141,67 +104,45 @@ const Home = () => {
           </div>
         </section>
       </FadeIn>
+
       <FadeIn>
-  <section className="home__technologies">
-    <div className="home__technologies-header">
-      <p className="page__eyebrow">
-        TECHNOLOGIES
-      </p>
+        <section className="home__technologies">
+          <div className="home__technologies-header">
+            <p className="page__eyebrow">
+              TECHNOLOGIES
+            </p>
 
-      <h2>Tools I Work With</h2>
-    </div>
+            <h2>Tools I Work With</h2>
+          </div>
 
-    <div className="home__technologies-grid">
-  {technologies.map((technology) => {
-    const Icon = technology.icon;
+          <div className="home__technologies-grid">
+            {technologies.map((technology) => {
+              const Icon = technology.icon;
 
-    return (
-      <div
-        key={technology.name}
-        className="home__technology"
-      >
-        <Icon className="home__technology-icon" />
+              return (
+                <div
+                  key={technology.name}
+                  className="home__technology"
+                >
+                  <Icon className="home__technology-icon" />
 
-        <span>{technology.name}</span>
-      </div>
-    );
-  })}
-</div>
-  </section>
-</FadeIn>
+                  <span>
+                    {technology.name}
+                  </span>
+                </div>
+              );
+            })}
+          </div>
+        </section>
+      </FadeIn>
 
-<FadeIn>
-  <section className="home__cta">
-    <div className="home__cta-content">
-      <p className="page__eyebrow">
-        LET'S CONNECT
-      </p>
-
-      <h2>
-        Have a project in mind?
-      </h2>
-
-      <p>
-        I'm always interested in new opportunities,
-        projects, and ways to build something useful
-        for the web.
-      </p>
-
-      <div className="home__cta-buttons">
-        <Button to="/contact">
-          Get In Touch
-        </Button>
-
-        <Button
-          to="/projects"
-          variant="secondary"
-        >
-          View My Work
-        </Button>
-      </div>
-    </div>
-  </section>
-</FadeIn>
+      {isContactOpen && (
+        <Contact
+          onClose={() =>
+            setIsContactOpen(false)
+          }
+        />
+      )}
     </>
   );
 };

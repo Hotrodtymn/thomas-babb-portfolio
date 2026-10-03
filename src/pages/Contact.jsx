@@ -1,13 +1,35 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 
-import FadeIn from "../components/FadeIn";
-
-const Contact = () => {
+const Contact = ({ onClose }) => {
   const [formData, setFormData] = useState({
     name: "",
     email: "",
     message: "",
   });
+
+  useEffect(() => {
+    const handleEscape = (event) => {
+      if (event.key === "Escape") {
+        onClose();
+      }
+    };
+
+    document.addEventListener(
+      "keydown",
+      handleEscape
+    );
+
+    document.body.style.overflow = "hidden";
+
+    return () => {
+      document.removeEventListener(
+        "keydown",
+        handleEscape
+      );
+
+      document.body.style.overflow = "";
+    };
+  }, [onClose]);
 
   const handleChange = (event) => {
     const { name, value } = event.target;
@@ -30,31 +52,58 @@ const Contact = () => {
     );
 
     window.location.href =
-      `mailto:tomleebabb@gmail.comsubject=${subject}&body=${body}`;
+      `mailto:tomleebabb@gmail.com?subject=${subject}&body=${body}`;
+  };
+
+  const handleOverlayClick = (event) => {
+    if (
+      event.target === event.currentTarget
+    ) {
+      onClose();
+    }
   };
 
   return (
-    <section className="contact-page">
-      <FadeIn>
-        <div className="contact-page__header">
+    <div
+      className="contact-modal"
+      onMouseDown={handleOverlayClick}
+    >
+      <div
+        className="contact-modal__content"
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="contact-modal-title"
+      >
+        <button
+          type="button"
+          className="contact-modal__close"
+          onClick={onClose}
+          aria-label="Close contact form"
+        >
+          ×
+        </button>
+
+        <div className="contact-modal__header">
           <p className="page__eyebrow">
             GET IN TOUCH
           </p>
 
-          <h1>Let's work together.</h1>
+          <h1 id="contact-modal-title">
+            Let's work together.
+          </h1>
 
           <p>
-            I'm interested in frontend development opportunities,
-            freelance projects, and building useful web
-            experiences.
+            I'm interested in frontend development
+            opportunities, freelance projects, and
+            building useful web experiences.
           </p>
         </div>
-      </FadeIn>
 
-      <div className="contact-page__grid">
-        <FadeIn>
-          <div className="contact-page__info">
-            <h2>Contact Information</h2>
+        <div className="contact-modal__grid">
+          <div className="contact-modal__info">
+            <h2>
+              Contact Information
+            </h2>
 
             <div className="contact-item">
               <span className="contact-item__label">
@@ -65,7 +114,7 @@ const Contact = () => {
                 href="mailto:tomleebabb@gmail.com"
                 className="contact-item__link"
               >
-                YOUR_EMAIL@example.com
+                tomleebabb@gmail.com
               </a>
             </div>
 
@@ -99,23 +148,23 @@ const Contact = () => {
               </a>
             </div>
           </div>
-        </FadeIn>
 
-        <FadeIn>
-          <div className="contact-page__form-wrapper">
-            <h2>Send Me a Message</h2>
+          <div className="contact-modal__form-wrapper">
+            <h2>
+              Send Me a Message
+            </h2>
 
             <form
               className="contact-form"
               onSubmit={handleSubmit}
             >
               <div className="contact-form__field">
-                <label htmlFor="name">
+                <label htmlFor="contact-name">
                   Name
                 </label>
 
                 <input
-                  id="name"
+                  id="contact-name"
                   name="name"
                   type="text"
                   value={formData.name}
@@ -126,12 +175,12 @@ const Contact = () => {
               </div>
 
               <div className="contact-form__field">
-                <label htmlFor="email">
+                <label htmlFor="contact-email">
                   Email
                 </label>
 
                 <input
-                  id="email"
+                  id="contact-email"
                   name="email"
                   type="email"
                   value={formData.email}
@@ -142,12 +191,12 @@ const Contact = () => {
               </div>
 
               <div className="contact-form__field">
-                <label htmlFor="message">
+                <label htmlFor="contact-message">
                   Message
                 </label>
 
                 <textarea
-                  id="message"
+                  id="contact-message"
                   name="message"
                   value={formData.message}
                   onChange={handleChange}
@@ -165,9 +214,9 @@ const Contact = () => {
               </button>
             </form>
           </div>
-        </FadeIn>
+        </div>
       </div>
-    </section>
+    </div>
   );
 };
 

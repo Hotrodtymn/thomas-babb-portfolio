@@ -1,3 +1,4 @@
+import React, { useState } from "react";
 import "./App.css";
 
 import {
@@ -19,17 +20,31 @@ import Contact from "./pages/Contact";
 import NotFound from "./pages/NotFound";
 
 function App() {
+  const [isContactOpen, setIsContactOpen] = useState(false);
+
+  const openContact = () => {
+    setIsContactOpen(true);
+  };
+
+  const closeContact = () => {
+    setIsContactOpen(false);
+  };
+
   return (
     <Router>
       <ScrollToTop />
 
-      <Nav />
+      <Nav onContactClick={openContact} />
 
       <main className="main">
         <Routes>
           <Route
             path="/"
-            element={<Home />}
+            element={
+              <Home
+                onContactClick={openContact}
+              />
+            }
           />
 
           <Route
@@ -48,20 +63,21 @@ function App() {
           />
 
           <Route
-            path="/contact"
-            element={<Contact />}
-          />
-
-          <Route
             path="*"
             element={<NotFound />}
           />
         </Routes>
       </main>
 
-      <Footer />
+      <Footer onContactClick={openContact} />
 
       <ScrollToTopButton />
+
+      {isContactOpen && (
+        <Contact
+          onClose={closeContact}
+        />
+      )}
     </Router>
   );
 }

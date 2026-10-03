@@ -1,34 +1,59 @@
 import {
+  FaReact,
+  FaJs,
   FaHtml5,
   FaCss3Alt,
-  FaJs,
-  FaReact,
-  FaRoute,
   FaGitAlt,
   FaGithub,
-  FaServer,
+  FaCode,
 } from "react-icons/fa";
+
+import {
+  SiTailwindcss,
+  SiNextdotjs,
+  SiFirebase,
+  SiStripe,
+  SiVercel,
+  SiGooglegemini,
+  SiChatbot,
+} from "react-icons/si";
 
 const technologies = [
   {
-    name: "HTML",
-    icon: FaHtml5,
-  },
-  {
-    name: "CSS",
-    icon: FaCss3Alt,
+    name: "React",
+    icon: FaReact,
   },
   {
     name: "JavaScript",
     icon: FaJs,
   },
   {
-    name: "React",
-    icon: FaReact,
+    name: "HTML5",
+    icon: FaHtml5,
   },
   {
-    name: "React Router",
-    icon: FaRoute,
+    name: "CSS3",
+    icon: FaCss3Alt,
+  },
+  {
+    name: "Tailwind CSS",
+    icon: SiTailwindcss,
+  },
+  {
+    name: "Next.js",
+    icon: SiNextdotjs,
+  },
+  {
+    name: "Firebase",
+    icon: SiFirebase,
+  },
+  {
+    name: "Stripe",
+    icon: SiStripe,
+  },
+  {
+    name: "REST APIs",
+    icon: FaCode,
   },
   {
     name: "Git",
@@ -39,8 +64,16 @@ const technologies = [
     icon: FaGithub,
   },
   {
-    name: "REST APIs",
-    icon: FaServer,
+    name: "Vercel",
+    icon: SiVercel,
+  },
+  {
+    name: "Google Gemini",
+    icon: SiGooglegemini,
+  },
+  {
+    name: "ChatGPT",
+    icon: SiChatbot,
   },
 ];
 
