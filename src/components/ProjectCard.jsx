@@ -15,12 +15,6 @@ const ProjectCard = ({ project }) => {
             : ""
         }`}
       >
-        {project.featured && (
-          <div className="project-card__featured">
-            Featured
-          </div>
-        )}
-
         {project.image && !imageError ? (
           <>
             {!imageLoaded && (
@@ -65,31 +59,31 @@ const ProjectCard = ({ project }) => {
 
       <div className="project-card__content">
         <div className="project-card__top">
-  <div>
-    <Link
-      to={`/projects/${project.slug}`}
-      className="project-card__title"
-    >
-      {project.title}
-    </Link>
+          <div>
+            <Link
+              to={`/projects/${project.slug}`}
+              className="project-card__title"
+            >
+              {project.title}
+            </Link>
 
-    <p className="project-card__description">
-      {project.description}
-    </p>
-  </div>
+            <p className="project-card__description">
+              {project.description}
+            </p>
+          </div>
 
-  {project.date && (
-    <span className="project-card__date">
-      {new Date(project.date).toLocaleDateString(
-        "en-US",
-        {
-          month: "short",
-          year: "numeric",
-        }
-      )}
-    </span>
-  )}
-</div>
+          {project.date && (
+            <span className="project-card__date">
+              {new Date(project.date).toLocaleDateString(
+                "en-US",
+                {
+                  month: "short",
+                  year: "numeric",
+                }
+              )}
+            </span>
+          )}
+        </div>
 
         <div className="project-card__technologies">
           {project.technologies.map((technology) => (
@@ -147,3 +141,4 @@ const ProjectCard = ({ project }) => {
 };
 
 export default ProjectCard;
+

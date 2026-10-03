@@ -1,11 +1,15 @@
 import React, { useEffect, useRef, useState } from "react";
-
 import { Link, useParams } from "react-router-dom";
 
 import projects from "../data/projects";
 import FadeIn from "../components/FadeIn";
 
-const ProjectScreenshot = ({ screenshot, title, index, onOpen }) => {
+const ProjectScreenshot = ({
+  screenshot,
+  title,
+  index,
+  onOpen,
+}) => {
   const [imageError, setImageError] = useState(false);
 
   if (imageError) {
@@ -14,6 +18,7 @@ const ProjectScreenshot = ({ screenshot, title, index, onOpen }) => {
 
   return (
     <button
+      type="button"
       className="project-gallery__item"
       onClick={() =>
         onOpen({
@@ -40,16 +45,25 @@ const ProjectDetails = () => {
 
   const touchStartX = useRef(null);
 
-  const project = projects.find((project) => project.slug === slug);
+  const project = projects.find(
+    (project) => project.slug === slug
+  );
 
   const currentProjectIndex = projects.findIndex(
-    (project) => project.slug === slug,
+    (project) => project.slug === slug
   );
 
   const previousProject =
-    projects[(currentProjectIndex - 1 + projects.length) % projects.length];
+    projects[
+      (currentProjectIndex - 1 + projects.length) %
+        projects.length
+    ];
 
-  const nextProject = projects[(currentProjectIndex + 1) % projects.length];
+  const nextProject =
+    projects[
+      (currentProjectIndex + 1) %
+        projects.length
+    ];
 
   const openPreviousImage = () => {
     if (!lightboxImage || !project) {
@@ -74,7 +88,8 @@ const ProjectDetails = () => {
     }
 
     const nextIndex =
-      lightboxImage.index === project.screenshots.length - 1
+      lightboxImage.index ===
+      project.screenshots.length - 1
         ? 0
         : lightboxImage.index + 1;
 
@@ -86,7 +101,8 @@ const ProjectDetails = () => {
   };
 
   const handleTouchStart = (event) => {
-    touchStartX.current = event.touches[0].clientX;
+    touchStartX.current =
+      event.touches[0].clientX;
   };
 
   const handleTouchEnd = (event) => {
@@ -94,13 +110,18 @@ const ProjectDetails = () => {
       return;
     }
 
-    const touchEndX = event.changedTouches[0].clientX;
+    const touchEndX =
+      event.changedTouches[0].clientX;
 
-    const swipeDistance = touchStartX.current - touchEndX;
+    const swipeDistance =
+      touchStartX.current - touchEndX;
 
     const minimumSwipeDistance = 50;
 
-    if (Math.abs(swipeDistance) < minimumSwipeDistance) {
+    if (
+      Math.abs(swipeDistance) <
+      minimumSwipeDistance
+    ) {
       touchStartX.current = null;
       return;
     }
@@ -135,25 +156,39 @@ const ProjectDetails = () => {
       }
     };
 
-    window.addEventListener("keydown", handleKeyDown);
+    window.addEventListener(
+      "keydown",
+      handleKeyDown
+    );
 
     return () => {
       document.body.style.overflow = "";
 
-      window.removeEventListener("keydown", handleKeyDown);
+      window.removeEventListener(
+        "keydown",
+        handleKeyDown
+      );
     };
   }, [lightboxImage]);
 
   if (!project) {
     return (
       <section className="page">
-        <p className="page__eyebrow">PROJECT NOT FOUND</p>
+        <p className="page__eyebrow">
+          PROJECT NOT FOUND
+        </p>
 
         <h1>Project Not Found</h1>
 
-        <p>The project you're looking for doesn't exist.</p>
+        <p>
+          The project you're looking for doesn't
+          exist.
+        </p>
 
-        <Link to="/projects" className="project-details__back">
+        <Link
+          to="/projects"
+          className="project-details__back"
+        >
           ← Back to Projects
         </Link>
       </section>
@@ -164,7 +199,10 @@ const ProjectDetails = () => {
     <section className="project-details">
       {/* Back to Projects */}
       <FadeIn>
-        <Link to="/projects" className="project-details__back">
+        <Link
+          to="/projects"
+          className="project-details__back"
+        >
           ← Back to Projects
         </Link>
       </FadeIn>
@@ -173,9 +211,14 @@ const ProjectDetails = () => {
       <FadeIn>
         <div className="project-details__hero">
           {project.image ? (
-            <img src={project.image} alt={project.title} />
+            <img
+              src={project.image}
+              alt={project.title}
+            />
           ) : (
-            <div className="project-details__placeholder">{project.title}</div>
+            <div className="project-details__placeholder">
+              {project.title}
+            </div>
           )}
         </div>
       </FadeIn>
@@ -184,7 +227,9 @@ const ProjectDetails = () => {
       <FadeIn>
         <div className="project-details__header">
           <div className="project-details__label">
-            <p className="page__eyebrow">PROJECT</p>
+            <p className="page__eyebrow">
+              PROJECT
+            </p>
 
             {project.featured && (
               <span className="project-details__featured">
@@ -195,7 +240,9 @@ const ProjectDetails = () => {
 
           <h1>{project.title}</h1>
 
-          <p>{project.description}</p>
+          <div className="project-details__intro">
+            <p>{project.description}</p>
+          </div>
 
           {/* Completion Date */}
           {project.date && (
@@ -203,7 +250,9 @@ const ProjectDetails = () => {
               <span>Completed</span>
 
               <strong>
-                {new Date(project.date).toLocaleDateString("en-US", {
+                {new Date(
+                  project.date
+                ).toLocaleDateString("en-US", {
                   month: "long",
                   year: "numeric",
                 })}
@@ -222,13 +271,19 @@ const ProjectDetails = () => {
             <div className="project-details__overview-item">
               <span>Technologies</span>
 
-              <strong>{project.technologies.length}</strong>
+              <strong>
+                {project.technologies.length}
+              </strong>
             </div>
 
             <div className="project-details__overview-item">
               <span>Status</span>
 
-              <strong>{project.featured ? "Featured" : "Completed"}</strong>
+              <strong>
+                {project.featured
+                  ? "Featured"
+                  : "Completed"}
+              </strong>
             </div>
           </div>
         </div>
@@ -238,9 +293,27 @@ const ProjectDetails = () => {
       <FadeIn>
         <div className="project-details__body">
           <div className="project-details__content">
-            <h2>About the Project</h2>
+            <div className="project-details__content-header">
+              <p className="page__eyebrow">
+                PROJECT OVERVIEW
+              </p>
 
-            <p className="project-details__description">{project.details}</p>
+              <h2>About the Project</h2>
+            </div>
+
+            <div className="project-details__description">
+              {project.details
+                ?.split("\n")
+                .filter(
+                  (paragraph) =>
+                    paragraph.trim()
+                )
+                .map((paragraph, index) => (
+                  <p key={index}>
+                    {paragraph.trim()}
+                  </p>
+                ))}
+            </div>
 
             <div className="project-details__links">
               {project.github && (
@@ -272,58 +345,74 @@ const ProjectDetails = () => {
             <h2>Technologies</h2>
 
             <div className="project-details__technologies">
-              {project.technologies.map((technology) => (
-                <span key={technology} className="project-card__technology">
-                  {technology}
-                </span>
-              ))}
+              {project.technologies.map(
+                (technology) => (
+                  <span
+                    key={technology}
+                    className="project-card__technology"
+                  >
+                    {technology}
+                  </span>
+                )
+              )}
             </div>
           </aside>
         </div>
       </FadeIn>
 
       {/* Screenshots */}
-      {project.screenshots && project.screenshots.length > 0 && (
-        <FadeIn>
-          <div className="project-gallery">
-            <div className="project-gallery__header">
-              <p className="page__eyebrow">PROJECT SCREENSHOTS</p>
+      {project.screenshots &&
+        project.screenshots.length > 0 && (
+          <FadeIn>
+            <div className="project-gallery">
+              <div className="project-gallery__header">
+                <p className="page__eyebrow">
+                  PROJECT SCREENSHOTS
+                </p>
 
-              <h2>Inside the Project</h2>
-            </div>
+                <h2>Inside the Project</h2>
+              </div>
 
-            <div className="project-gallery__grid">
-              {project.screenshots.map((screenshot, index) => (
-                <ProjectScreenshot
-                  key={screenshot}
-                  screenshot={screenshot}
-                  title={project.title}
-                  index={index}
-                  onOpen={setLightboxImage}
-                />
-              ))}
+              <div className="project-gallery__grid">
+                {project.screenshots.map(
+                  (screenshot, index) => (
+                    <ProjectScreenshot
+                      key={screenshot}
+                      screenshot={screenshot}
+                      title={project.title}
+                      index={index}
+                      onOpen={setLightboxImage}
+                    />
+                  )
+                )}
+              </div>
             </div>
-          </div>
-        </FadeIn>
-      )}
+          </FadeIn>
+        )}
 
       {/* Lightbox */}
       {lightboxImage && (
         <div
           className="lightbox"
-          onClick={() => setLightboxImage(null)}
+          onClick={() =>
+            setLightboxImage(null)
+          }
           onTouchStart={handleTouchStart}
           onTouchEnd={handleTouchEnd}
         >
           <button
+            type="button"
             className="lightbox__close"
-            onClick={() => setLightboxImage(null)}
+            onClick={() =>
+              setLightboxImage(null)
+            }
             aria-label="Close image"
           >
             ×
           </button>
 
           <button
+            type="button"
             className="lightbox__arrow lightbox__arrow--left"
             onClick={(event) => {
               event.stopPropagation();
@@ -337,12 +426,17 @@ const ProjectDetails = () => {
           <img
             key={lightboxImage.src}
             src={lightboxImage.src}
-            alt={`${lightboxImage.title} screenshot ${lightboxImage.index + 1}`}
+            alt={`${lightboxImage.title} screenshot ${
+              lightboxImage.index + 1
+            }`}
             className="lightbox__image lightbox__image--fade"
-            onClick={(event) => event.stopPropagation()}
+            onClick={(event) =>
+              event.stopPropagation()
+            }
           />
 
           <button
+            type="button"
             className="lightbox__arrow lightbox__arrow--right"
             onClick={(event) => {
               event.stopPropagation();
@@ -354,7 +448,8 @@ const ProjectDetails = () => {
           </button>
 
           <div className="lightbox__counter">
-            {lightboxImage.index + 1} / {project.screenshots.length}
+            {lightboxImage.index + 1} /{" "}
+            {project.screenshots.length}
           </div>
         </div>
       )}
@@ -368,7 +463,9 @@ const ProjectDetails = () => {
           >
             <span>← Previous Project</span>
 
-            <strong>{previousProject.title}</strong>
+            <strong>
+              {previousProject.title}
+            </strong>
           </Link>
 
           <Link
@@ -377,7 +474,9 @@ const ProjectDetails = () => {
           >
             <span>Next Project →</span>
 
-            <strong>{nextProject.title}</strong>
+            <strong>
+              {nextProject.title}
+            </strong>
           </Link>
         </div>
       </FadeIn>
@@ -385,7 +484,10 @@ const ProjectDetails = () => {
       {/* Back to All Projects */}
       <FadeIn>
         <div className="project-details__back-bottom">
-          <Link to="/projects" className="project-details__back-bottom-link">
+          <Link
+            to="/projects"
+            className="project-details__back-bottom-link"
+          >
             ← Back to All Projects
           </Link>
         </div>
@@ -395,3 +497,4 @@ const ProjectDetails = () => {
 };
 
 export default ProjectDetails;
+
