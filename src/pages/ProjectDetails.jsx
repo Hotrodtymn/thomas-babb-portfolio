@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 
 import projects from "../data/projects";
@@ -61,11 +61,10 @@ const ProjectDetails = () => {
 
   const nextProject =
     projects[
-      (currentProjectIndex + 1) %
-        projects.length
+      (currentProjectIndex + 1) % projects.length
     ];
 
-  const openPreviousImage = () => {
+  const openPreviousImage = useCallback(() => {
     if (!lightboxImage || !project) {
       return;
     }
@@ -80,9 +79,9 @@ const ProjectDetails = () => {
       title: project.title,
       index: previousIndex,
     });
-  };
+  }, [lightboxImage, project]);
 
-  const openNextImage = () => {
+  const openNextImage = useCallback(() => {
     if (!lightboxImage || !project) {
       return;
     }
@@ -98,7 +97,7 @@ const ProjectDetails = () => {
       title: project.title,
       index: nextIndex,
     });
-  };
+  }, [lightboxImage, project]);
 
   const handleTouchStart = (event) => {
     touchStartX.current =
@@ -156,10 +155,7 @@ const ProjectDetails = () => {
       }
     };
 
-    window.addEventListener(
-      "keydown",
-      handleKeyDown
-    );
+    window.addEventListener("keydown", handleKeyDown);
 
     return () => {
       document.body.style.overflow = "";
@@ -169,7 +165,11 @@ const ProjectDetails = () => {
         handleKeyDown
       );
     };
-  }, [lightboxImage]);
+  }, [
+    lightboxImage,
+    openPreviousImage,
+    openNextImage,
+  ]);
 
   if (!project) {
     return (
@@ -181,8 +181,7 @@ const ProjectDetails = () => {
         <h1>Project Not Found</h1>
 
         <p>
-          The project you're looking for doesn't
-          exist.
+          The project you're looking for doesn't exist.
         </p>
 
         <Link
@@ -250,12 +249,13 @@ const ProjectDetails = () => {
               <span>Completed</span>
 
               <strong>
-                {new Date(
-                  project.date
-                ).toLocaleDateString("en-US", {
-                  month: "long",
-                  year: "numeric",
-                })}
+                {new Date(project.date).toLocaleDateString(
+                  "en-US",
+                  {
+                    month: "long",
+                    year: "numeric",
+                  }
+                )}
               </strong>
             </div>
           )}
@@ -264,21 +264,16 @@ const ProjectDetails = () => {
           <div className="project-details__overview">
             <div className="project-details__overview-item">
               <span>Project Type</span>
-
               <strong>{project.type}</strong>
             </div>
 
             <div className="project-details__overview-item">
               <span>Technologies</span>
-
-              <strong>
-                {project.technologies.length}
-              </strong>
+              <strong>{project.technologies.length}</strong>
             </div>
 
             <div className="project-details__overview-item">
               <span>Status</span>
-
               <strong>
                 {project.featured
                   ? "Featured"
@@ -304,10 +299,7 @@ const ProjectDetails = () => {
             <div className="project-details__description">
               {project.details
                 ?.split("\n")
-                .filter(
-                  (paragraph) =>
-                    paragraph.trim()
-                )
+                .filter((paragraph) => paragraph.trim())
                 .map((paragraph, index) => (
                   <p key={index}>
                     {paragraph.trim()}
@@ -345,16 +337,14 @@ const ProjectDetails = () => {
             <h2>Technologies</h2>
 
             <div className="project-details__technologies">
-              {project.technologies.map(
-                (technology) => (
-                  <span
-                    key={technology}
-                    className="project-card__technology"
-                  >
-                    {technology}
-                  </span>
-                )
-              )}
+              {project.technologies.map((technology) => (
+                <span
+                  key={technology}
+                  className="project-card__technology"
+                >
+                  {technology}
+                </span>
+              ))}
             </div>
           </aside>
         </div>
@@ -394,18 +384,14 @@ const ProjectDetails = () => {
       {lightboxImage && (
         <div
           className="lightbox"
-          onClick={() =>
-            setLightboxImage(null)
-          }
+          onClick={() => setLightboxImage(null)}
           onTouchStart={handleTouchStart}
           onTouchEnd={handleTouchEnd}
         >
           <button
             type="button"
             className="lightbox__close"
-            onClick={() =>
-              setLightboxImage(null)
-            }
+            onClick={() => setLightboxImage(null)}
             aria-label="Close image"
           >
             ×
@@ -430,9 +416,7 @@ const ProjectDetails = () => {
               lightboxImage.index + 1
             }`}
             className="lightbox__image lightbox__image--fade"
-            onClick={(event) =>
-              event.stopPropagation()
-            }
+            onClick={(event) => event.stopPropagation()}
           />
 
           <button
@@ -463,9 +447,7 @@ const ProjectDetails = () => {
           >
             <span>← Previous Project</span>
 
-            <strong>
-              {previousProject.title}
-            </strong>
+            <strong>{previousProject.title}</strong>
           </Link>
 
           <Link
@@ -474,9 +456,7 @@ const ProjectDetails = () => {
           >
             <span>Next Project →</span>
 
-            <strong>
-              {nextProject.title}
-            </strong>
+            <strong>{nextProject.title}</strong>
           </Link>
         </div>
       </FadeIn>
@@ -497,4 +477,3 @@ const ProjectDetails = () => {
 };
 
 export default ProjectDetails;
-
