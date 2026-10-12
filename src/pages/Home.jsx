@@ -37,7 +37,7 @@ const Home = () => {
             </Button>
 
             <Button
-              href="/assets/Thomas_Babb_Resume.docx.pdf"
+              href="/assets/ThomasBabb Resume.pdf"
               variant="secondary"
               download
             >
