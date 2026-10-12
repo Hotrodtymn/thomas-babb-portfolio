@@ -9,20 +9,15 @@ import technologies from "../data/technologies";
 import Contact from "./Contact";
 
 const Home = () => {
-  const [isContactOpen, setIsContactOpen] =
-    useState(false);
+  const [isContactOpen, setIsContactOpen] = useState(false);
 
-  const featuredProjects = projects.filter(
-    (project) => project.featured
-  );
+  const featuredProjects = projects.filter((project) => project.featured);
 
   return (
     <>
       <section className="home">
         <div className="home__content">
-          <p className="home__eyebrow">
-            FRONTEND SOFTWARE DEVELOPER
-          </p>
+          <p className="home__eyebrow">FRONTEND SOFTWARE DEVELOPER</p>
 
           <h1 className="home__title">
             Hi, I'm Thomas Babb.
@@ -30,26 +25,19 @@ const Home = () => {
           </h1>
 
           <p className="home__description">
-            I create responsive, user-focused web applications
-            using modern JavaScript, React, and web technologies.
+            I create responsive, user-focused web applications using modern
+            JavaScript, React, and web technologies.
           </p>
 
           <div className="home__buttons">
-            <Button to="/projects">
-              View My Projects
-            </Button>
+            <Button to="/projects">View My Projects</Button>
 
-            <Button
-              onClick={() =>
-                setIsContactOpen(true)
-              }
-              variant="secondary"
-            >
+            <Button onClick={() => setIsContactOpen(true)} variant="secondary">
               Contact Me
             </Button>
 
             <Button
-              href="/assets/Thomas-Babb-Resume.pdf"
+              href="/assets/Thomas_Babb_Resume.docx.pdf"
               variant="secondary"
               download
             >
@@ -60,10 +48,7 @@ const Home = () => {
 
         <div className="home__profile">
           <div className="home__profile-image">
-            <img
-              src="/assets/profile.jpg"
-              alt="Thomas Babb"
-            />
+            <img src="/assets/profile.jpg" alt="Thomas Babb" />
           </div>
         </div>
       </section>
@@ -72,9 +57,7 @@ const Home = () => {
         <section className="featured">
           <div className="featured__header">
             <div>
-              <p className="page__eyebrow">
-                SELECTED WORK
-              </p>
+              <p className="page__eyebrow">SELECTED WORK</p>
 
               <h2>Featured Projects</h2>
 
@@ -86,20 +69,14 @@ const Home = () => {
               </p>
             </div>
 
-            <Link
-              to="/projects"
-              className="featured__view-all"
-            >
+            <Link to="/projects" className="featured__view-all">
               View All Projects →
             </Link>
           </div>
 
           <div className="featured__grid">
             {featuredProjects.map((project) => (
-              <ProjectCard
-                key={project.id}
-                project={project}
-              />
+              <ProjectCard key={project.id} project={project} />
             ))}
           </div>
         </section>
@@ -108,9 +85,7 @@ const Home = () => {
       <FadeIn>
         <section className="home__technologies">
           <div className="home__technologies-header">
-            <p className="page__eyebrow">
-              TECHNOLOGIES
-            </p>
+            <p className="page__eyebrow">TECHNOLOGIES</p>
 
             <h2>Tools I Work With</h2>
           </div>
@@ -120,15 +95,10 @@ const Home = () => {
               const Icon = technology.icon;
 
               return (
-                <div
-                  key={technology.name}
-                  className="home__technology"
-                >
+                <div key={technology.name} className="home__technology">
                   <Icon className="home__technology-icon" />
 
-                  <span>
-                    {technology.name}
-                  </span>
+                  <span>{technology.name}</span>
                 </div>
               );
             })}
@@ -136,13 +106,7 @@ const Home = () => {
         </section>
       </FadeIn>
 
-      {isContactOpen && (
-        <Contact
-          onClose={() =>
-            setIsContactOpen(false)
-          }
-        />
-      )}
+      {isContactOpen && <Contact onClose={() => setIsContactOpen(false)} />}
     </>
   );
 };
