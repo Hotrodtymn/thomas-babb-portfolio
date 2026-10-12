@@ -1,5 +1,27 @@
 const projects = [
   {
+    id: 6,
+    slug: "skinstatic",
+    title: "SkinStatic",
+    date: "2026-10-08",
+    type: "Web Application",
+    featured: true,
+    description:
+      "A responsive web application focused on presenting skin-related results through a clean, user-friendly interface.",
+    details:
+      "SkinStatic is a frontend web application built with React. The project focuses on creating a responsive user experience, organizing results clearly, and delivering a polished interface across screen sizes.",
+    technologies: ["React", "JavaScript", "CSS"],
+    image: "/assets/skintastic/SkinSastic_home.png",
+    screenshots: [
+      "/assets/skintastic/SkinSastic_home.png",
+      "/assets/skintastic/SkinSastic_upload.png",
+      "/assets/skintastic/SkinSastic_results.png",
+    ],
+    github: "https://github.com/Hotrodtymn/Skinstatic-intern.git",
+    live: "https://skinstatic-intern.vercel.app/",
+  },
+
+  {
     id: 5,
     slug: "summarist",
     title: "Summarist",
@@ -22,7 +44,7 @@ const projects = [
       "/assets/Summarist/For you page.png",
       "/assets/Summarist/Book page.png",
     ],
-    github: "",
+    github: "https://github.com/Hotrodtymn/Summarist.git",
     live: "https://summarist-ebon.vercel.app/",
   },
 
@@ -48,7 +70,7 @@ const projects = [
       "/assets/Rockstreamers/Search page.png",
       "/assets/Rockstreamers/Video page.png",
     ],
-    github: "",
+    github: "https://github.com/Hotrodtymn/youtube-clone.git",
     live: "https://youtube-clone-mmn7.vercel.app/",
   },
 

@@ -1,9 +1,20 @@
+
 import React, { useEffect, useState } from "react";
+
+const EMAILJS_SERVICE_ID = "service_37vvo12";
+const EMAILJS_TEMPLATE_ID = "template_zepbzpv";
+const EMAILJS_PUBLIC_KEY = "CPDpNHh5-XGqxpOZ6";
 
 const Contact = ({ onClose }) => {
   const [formData, setFormData] = useState({
     name: "",
     email: "",
+    message: "",
+  });
+
+  const [isSending, setIsSending] = useState(false);
+  const [submissionStatus, setSubmissionStatus] = useState({
+    type: "",
     message: "",
   });
 
@@ -14,20 +25,14 @@ const Contact = ({ onClose }) => {
       }
     };
 
-    document.addEventListener(
-      "keydown",
-      handleEscape
-    );
+    const previousOverflow = document.body.style.overflow;
 
+    document.addEventListener("keydown", handleEscape);
     document.body.style.overflow = "hidden";
 
     return () => {
-      document.removeEventListener(
-        "keydown",
-        handleEscape
-      );
-
-      document.body.style.overflow = "";
+      document.removeEventListener("keydown", handleEscape);
+      document.body.style.overflow = previousOverflow;
     };
   }, [onClose]);
 
@@ -38,27 +43,81 @@ const Contact = ({ onClose }) => {
       ...previous,
       [name]: value,
     }));
+
+    if (submissionStatus.message) {
+      setSubmissionStatus({
+        type: "",
+        message: "",
+      });
+    }
   };
 
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
 
-    const subject = encodeURIComponent(
-      `Portfolio Contact - ${formData.name}`
-    );
+    if (isSending) return;
 
-    const body = encodeURIComponent(
-      `Name: ${formData.name}\nEmail: ${formData.email}\n\n${formData.message}`
-    );
+    setIsSending(true);
+    setSubmissionStatus({
+      type: "",
+      message: "",
+    });
 
-    window.location.href =
-      `mailto:tomleebabb@gmail.com?subject=${subject}&body=${body}`;
+    try {
+      const response = await fetch(
+        "https://api.emailjs.com/api/v1.0/email/send",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            service_id: EMAILJS_SERVICE_ID,
+            template_id: EMAILJS_TEMPLATE_ID,
+            user_id: EMAILJS_PUBLIC_KEY,
+            template_params: {
+              user_name: formData.name.trim(),
+              user_email: formData.email.trim(),
+              user_message: formData.message.trim(),
+              reply_to: formData.email.trim(),
+              title: `Portfolio Contact - ${formData.name.trim()}`,
+            },
+          }),
+        }
+      );
+
+      if (!response.ok) {
+        const errorDetails = await response.text();
+        throw new Error(
+          errorDetails || "EmailJS could not send the message."
+        );
+      }
+
+      setSubmissionStatus({
+        type: "success",
+        message: "Thanks for reaching out! Your message has been sent.",
+      });
+
+      setFormData({
+        name: "",
+        email: "",
+        message: "",
+      });
+    } catch (error) {
+      console.error("EmailJS submission failed:", error);
+
+      setSubmissionStatus({
+        type: "error",
+        message:
+          "Your message couldn't be sent. Please try again or email tomleebabb@gmail.com directly.",
+      });
+    } finally {
+      setIsSending(false);
+    }
   };
 
   const handleOverlayClick = (event) => {
-    if (
-      event.target === event.currentTarget
-    ) {
+    if (event.target === event.currentTarget) {
       onClose();
     }
   };
@@ -84,9 +143,7 @@ const Contact = ({ onClose }) => {
         </button>
 
         <div className="contact-modal__header">
-          <p className="page__eyebrow">
-            GET IN TOUCH
-          </p>
+          <p className="page__eyebrow">GET IN TOUCH</p>
 
           <h1 id="contact-modal-title">
             Let's work together.
@@ -101,9 +158,7 @@ const Contact = ({ onClose }) => {
 
         <div className="contact-modal__grid">
           <div className="contact-modal__info">
-            <h2>
-              Contact Information
-            </h2>
+            <h2>Contact Information</h2>
 
             <div className="contact-item">
               <span className="contact-item__label">
@@ -150,9 +205,7 @@ const Contact = ({ onClose }) => {
           </div>
 
           <div className="contact-modal__form-wrapper">
-            <h2>
-              Send Me a Message
-            </h2>
+            <h2>Send Me a Message</h2>
 
             <form
               className="contact-form"
@@ -167,10 +220,12 @@ const Contact = ({ onClose }) => {
                   id="contact-name"
                   name="name"
                   type="text"
+                  autoComplete="name"
                   value={formData.name}
                   onChange={handleChange}
                   placeholder="Your name"
                   required
+                  maxLength={120}
                 />
               </div>
 
@@ -183,10 +238,12 @@ const Contact = ({ onClose }) => {
                   id="contact-email"
                   name="email"
                   type="email"
+                  autoComplete="email"
                   value={formData.email}
                   onChange={handleChange}
                   placeholder="you@example.com"
                   required
+                  maxLength={254}
                 />
               </div>
 
@@ -203,14 +260,26 @@ const Contact = ({ onClose }) => {
                   placeholder="Tell me about your project..."
                   rows="7"
                   required
+                  maxLength={5000}
                 />
               </div>
+
+              {submissionStatus.message && (
+                <p
+                  className={`contact-form__status contact-form__status--${submissionStatus.type}`}
+                  role="status"
+                  aria-live="polite"
+                >
+                  {submissionStatus.message}
+                </p>
+              )}
 
               <button
                 type="submit"
                 className="button button--primary"
+                disabled={isSending}
               >
-                Send Message
+                {isSending ? "Sending..." : "Send Message"}
               </button>
             </form>
           </div>
