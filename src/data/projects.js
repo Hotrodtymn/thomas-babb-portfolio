@@ -11,11 +11,11 @@ const projects = [
     details:
       "SkinStatic is a frontend web application built with React. The project focuses on creating a responsive user experience, organizing results clearly, and delivering a polished interface across screen sizes.",
     technologies: ["React", "JavaScript", "CSS"],
-    image: "/assets/skintastic/SkinSastic_home.png",
+    image: "/assets/Skintastic/Skintastic_home.png",
     screenshots: [
-      "/assets/skintastic/SkinSastic_home.png",
-      "/assets/skintastic/SkinSastic_upload.png",
-      "/assets/skintastic/SkinSastic_results.png",
+      "/assets/Skintastic/Skintastic_home.png",
+      "/assets/Skintastic/Skintastic_photo.png",
+      "/assets/Skintastic/Skintastic_results.png",
     ],
     github: "https://github.com/Hotrodtymn/Skinstatic-intern.git",
     live: "https://skinstatic-intern.vercel.app/",
@@ -31,13 +31,7 @@ const projects = [
       "A modern book summary platform built with React, Firebase authentication, REST APIs, and audio playback.",
     details:
       "Summarist is a responsive book summary application inspired by modern reading platforms. The project integrates external APIs to dynamically load book content, Firebase authentication, Google sign-in, and an audio player for listening to book descriptions and summaries. The application focuses on reusable React components, responsive design, routing, authentication, and API-driven content.",
-    technologies: [
-      "React",
-      "JavaScript",
-      "CSS",
-      "Firebase",
-      "REST API",
-    ],
+    technologies: ["React", "JavaScript", "CSS", "Firebase", "REST API"],
     image: "/assets/Summarist/Home page.png",
     screenshots: [
       "/assets/Summarist/Home page.png",
@@ -58,12 +52,7 @@ const projects = [
       "A modern video streaming platform built with React and designed around a unique media-focused user experience.",
     details:
       "Rockstreamer is a video streaming platform focused on creating a modern, visually engaging experience for discovering and watching content. The project uses reusable React components, responsive layouts, navigation, search functionality, and video-focused content displays.",
-    technologies: [
-      "React",
-      "JavaScript",
-      "CSS",
-      "REST API",
-    ],
+    technologies: ["React", "JavaScript", "CSS", "REST API"],
     image: "/assets/Rockstreamers/Home page.png",
     screenshots: [
       "/assets/Rockstreamers/Home page.png",
@@ -84,12 +73,7 @@ const projects = [
       "A responsive movie discovery application built with React and the OMDb API.",
     details:
       "CineVault is a movie discovery application that allows users to search for movies, explore popular titles, and view detailed movie information. The project focuses on working with APIs, React components, routing, and responsive UI design.",
-    technologies: [
-      "React",
-      "JavaScript",
-      "CSS",
-      "REST API",
-    ],
+    technologies: ["React", "JavaScript", "CSS", "REST API"],
     image: "/assets/Cinevault/Home Page.png",
     screenshots: [
       "/assets/Cinevault/Home Page.png",
