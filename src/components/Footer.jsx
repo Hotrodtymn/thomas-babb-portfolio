@@ -12,7 +12,7 @@ const Footer = ({ onContactClick }) => {
             </Link>
 
             <p className="footer__description">
-              Frontend software developer building responsive
+              Frontend Developer building responsive
               and user-focused web applications.
             </p>
           </div>
@@ -36,7 +36,7 @@ const Footer = ({ onContactClick }) => {
             <a
               href="https://github.com/Hotrodtymn"
               target="_blank"
-              rel="noreferrer"
+              rel="noopener noreferrer"
             >
               GitHub
             </a>
@@ -44,7 +44,7 @@ const Footer = ({ onContactClick }) => {
             <a
               href="https://www.linkedin.com/in/thomasbabbpm/"
               target="_blank"
-              rel="noreferrer"
+              rel="noopener noreferrer"
             >
               LinkedIn
             </a>

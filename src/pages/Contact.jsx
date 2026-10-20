@@ -1,11 +1,14 @@
+import useModalFocus from "../hooks/useModalFocus";
 
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 
 const EMAILJS_SERVICE_ID = "service_37vvo12";
 const EMAILJS_TEMPLATE_ID = "template_zepbzpv";
 const EMAILJS_PUBLIC_KEY = "CPDpNHh5-XGqxpOZ6";
 
 const Contact = ({ onClose }) => {
+  const dialogRef = useRef(null);
+  useModalFocus(dialogRef);
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -25,14 +28,11 @@ const Contact = ({ onClose }) => {
       }
     };
 
-    const previousOverflow = document.body.style.overflow;
 
     document.addEventListener("keydown", handleEscape);
-    document.body.style.overflow = "hidden";
 
     return () => {
       document.removeEventListener("keydown", handleEscape);
-      document.body.style.overflow = previousOverflow;
     };
   }, [onClose]);
 
@@ -129,6 +129,8 @@ const Contact = ({ onClose }) => {
     >
       <div
         className="contact-modal__content"
+        ref={dialogRef}
+        tabIndex={-1}
         role="dialog"
         aria-modal="true"
         aria-labelledby="contact-modal-title"
@@ -145,9 +147,9 @@ const Contact = ({ onClose }) => {
         <div className="contact-modal__header">
           <p className="page__eyebrow">GET IN TOUCH</p>
 
-          <h1 id="contact-modal-title">
+          <h2 id="contact-modal-title">
             Let's work together.
-          </h1>
+          </h2>
 
           <p>
             I'm interested in frontend development
@@ -158,7 +160,7 @@ const Contact = ({ onClose }) => {
 
         <div className="contact-modal__grid">
           <div className="contact-modal__info">
-            <h2>Contact Information</h2>
+            <h3>Contact Information</h3>
 
             <div className="contact-item">
               <span className="contact-item__label">
@@ -181,7 +183,7 @@ const Contact = ({ onClose }) => {
               <a
                 href="https://github.com/Hotrodtymn"
                 target="_blank"
-                rel="noreferrer"
+                rel="noopener noreferrer"
                 className="contact-item__link"
               >
                 github.com/Hotrodtymn
@@ -196,7 +198,7 @@ const Contact = ({ onClose }) => {
               <a
                 href="https://www.linkedin.com/in/thomasbabbpm/"
                 target="_blank"
-                rel="noreferrer"
+                rel="noopener noreferrer"
                 className="contact-item__link"
               >
                 linkedin.com/in/thomasbabbpm
@@ -205,7 +207,7 @@ const Contact = ({ onClose }) => {
           </div>
 
           <div className="contact-modal__form-wrapper">
-            <h2>Send Me a Message</h2>
+            <h3>Send Me a Message</h3>
 
             <form
               className="contact-form"

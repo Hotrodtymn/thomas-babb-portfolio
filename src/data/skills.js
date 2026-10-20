@@ -1,34 +1,7 @@
 const skillCategories = [
-  {
-    title: "Frontend",
-    skills: [
-      "HTML",
-      "CSS",
-      "JavaScript",
-      "React",
-      "React Router",
-      "Responsive Design",
-    ],
-  },
-  {
-    title: "Tools & Workflow",
-    skills: [
-      "Git",
-      "GitHub",
-      "VS Code",
-      "REST APIs",
-    ],
-  },
-  {
-    title: "Currently Learning",
-    skills: [
-      "Advanced React",
-      "API Integration",
-      "State Management",
-      "Modern JavaScript",
-    ],
-    learning: true,
-  },
+  { title: "Frontend", skills: ["React", "JavaScript", "TypeScript", "Next.js", "HTML5", "CSS3", "Tailwind CSS", "Responsive Web Development"] },
+  { title: "Integration & Workflow", skills: ["REST API Integration", "Firebase", "React Router", "Git", "GitHub", "Vercel"] },
+  { title: "Additional Strengths", skills: ["Agile Project Management", "Media Production"] },
 ];
 
 export default skillCategories;

@@ -1272,7 +1272,7 @@ img {
   padding-right: 45px;
 }
 
-.contact-modal__header h1 {
+.contact-modal__header h2 {
   margin-bottom: 20px;
   color: var(--text-primary);
   font-size: clamp(38px, 5vw, 60px);
@@ -1295,8 +1295,8 @@ img {
   gap: 50px;
 }
 
-.contact-modal__info h2,
-.contact-modal__form-wrapper h2 {
+.contact-modal__info h3,
+.contact-modal__form-wrapper h3 {
   margin-bottom: 24px;
   color: var(--text-primary);
   font-size: 22px;
@@ -2443,7 +2443,7 @@ img {
     margin-bottom: 32px;
   }
 
-  .contact-modal__header h1 {
+  .contact-modal__header h2 {
     font-size: 38px;
   }
 
@@ -2642,3 +2642,27 @@ img {
     right: 10px;
   }
 }
+
+/* Accessibility and small-screen refinements retain the existing palette. */
+:focus-visible { outline: 3px solid var(--blue-light); outline-offset: 4px; }
+.skip-link { position: fixed; top: -100px; left: 16px; z-index: 2000; padding: 12px; background: var(--bg-card); }
+.skip-link:focus { top: 12px; }
+.ai-tools { margin-top: 24px; color: var(--text-secondary); line-height: 1.7; }
+.button--primary { background: var(--blue-dark); }
+.button--primary:hover { background: #1d4ed8; }
+.contact-item__link { overflow-wrap: anywhere; }
+.project-card__top > div, .contact-modal__form-wrapper { min-width: 0; }
+@media (max-width: 600px) {
+  .main .projects-page, .main .about-page, .main .project-details { width: 100%; }
+  .contact-modal__header { padding-right: 0; }
+  .contact-modal__header h2 { font-size: clamp(28px, 8vw, 38px); }
+  .contact-modal__form-wrapper { padding: 16px; }
+  .project-details__header h1 { overflow-wrap: anywhere; }
+}
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after { animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; transition-duration: 0.01ms !important; }
+  .fade-in { opacity: 1; transform: none; }
+}
+
+.contact-form input:focus-visible, .contact-form textarea:focus-visible, .projects-sort select:focus-visible { outline: 3px solid var(--blue-light); outline-offset: 3px; }

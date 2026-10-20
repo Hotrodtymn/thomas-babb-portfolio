@@ -11,6 +11,11 @@ const FadeIn = ({ children, className = "" }) => {
       return;
     }
 
+    if (!window.IntersectionObserver || window.matchMedia?.("(prefers-reduced-motion: reduce)").matches) {
+      setVisible(true);
+      return;
+    }
+
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting) {
