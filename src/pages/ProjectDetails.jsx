@@ -1,3 +1,4 @@
+import useModalFocus from "../hooks/useModalFocus";
 import { useCallback, useEffect, useRef, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 
@@ -30,6 +31,8 @@ const ProjectScreenshot = ({
       aria-label={`View ${title} screenshot ${index + 1}`}
     >
       <img
+        loading="lazy"
+        decoding="async"
         src={screenshot}
         alt={`${title} screenshot ${index + 1}`}
         onError={() => setImageError(true)}
@@ -42,6 +45,9 @@ const ProjectDetails = () => {
   const { slug } = useParams();
 
   const [lightboxImage, setLightboxImage] = useState(null);
+
+  const lightboxRef = useRef(null);
+  useModalFocus(lightboxRef, Boolean(lightboxImage));
 
   const touchStartX = useRef(null);
 
@@ -139,7 +145,7 @@ const ProjectDetails = () => {
       return;
     }
 
-    document.body.style.overflow = "hidden";
+
 
     const handleKeyDown = (event) => {
       if (event.key === "Escape") {
@@ -158,7 +164,7 @@ const ProjectDetails = () => {
     window.addEventListener("keydown", handleKeyDown);
 
     return () => {
-      document.body.style.overflow = "";
+
 
       window.removeEventListener(
         "keydown",
@@ -264,7 +270,7 @@ const ProjectDetails = () => {
           <div className="project-details__overview">
             <div className="project-details__overview-item">
               <span>Project Type</span>
-              <strong>{project.type}</strong>
+              <strong>{project.type || "Web Application"}</strong>
             </div>
 
             <div className="project-details__overview-item">
@@ -312,7 +318,7 @@ const ProjectDetails = () => {
                 <a
                   href={project.github}
                   target="_blank"
-                  rel="noreferrer"
+                  rel="noopener noreferrer"
                   className="button button--secondary"
                 >
                   View on GitHub
@@ -323,7 +329,7 @@ const ProjectDetails = () => {
                 <a
                   href={project.live}
                   target="_blank"
-                  rel="noreferrer"
+                  rel="noopener noreferrer"
                   className="button button--primary"
                 >
                   View Live Site
@@ -383,6 +389,11 @@ const ProjectDetails = () => {
       {/* Lightbox */}
       {lightboxImage && (
         <div
+          ref={lightboxRef}
+          role="dialog"
+          aria-modal="true"
+          aria-label={`${project.title} screenshots`}
+          tabIndex={-1}
           className="lightbox"
           onClick={() => setLightboxImage(null)}
           onTouchStart={handleTouchStart}

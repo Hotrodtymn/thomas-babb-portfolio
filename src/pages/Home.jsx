@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { Link } from "react-router-dom";
 
 import projects from "../data/projects";
@@ -6,10 +6,9 @@ import ProjectCard from "../components/ProjectCard";
 import Button from "../components/Button";
 import FadeIn from "../components/FadeIn";
 import technologies from "../data/technologies";
-import Contact from "./Contact";
 
-const Home = () => {
-  const [isContactOpen, setIsContactOpen] = useState(false);
+
+const Home = ({ onContactClick }) => {
 
   const featuredProjects = projects.filter((project) => project.featured);
 
@@ -17,7 +16,7 @@ const Home = () => {
     <>
       <section className="home">
         <div className="home__content">
-          <p className="home__eyebrow">FRONTEND SOFTWARE DEVELOPER</p>
+          <p className="home__eyebrow">Frontend Developer</p>
 
           <h1 className="home__title">
             Hi, I'm Thomas Babb.
@@ -25,21 +24,22 @@ const Home = () => {
           </h1>
 
           <p className="home__description">
-            I create responsive, user-focused web applications using modern
-            JavaScript, React, and web technologies.
+            I’m a Frontend Developer specializing in React, JavaScript, TypeScript,
+            and Next.js, with additional experience in Agile project management
+            and media production.
           </p>
 
           <div className="home__buttons">
             <Button to="/projects">View My Projects</Button>
 
-            <Button onClick={() => setIsContactOpen(true)} variant="secondary">
+            <Button onClick={onContactClick} variant="secondary">
               Contact Me
             </Button>
 
             <Button
               href="/assets/ThomasBabb Resume.pdf"
               variant="secondary"
-              download
+              download="Thomas-Babb-Resume.pdf"
             >
               Download Resume
             </Button>
@@ -96,17 +96,17 @@ const Home = () => {
 
               return (
                 <div key={technology.name} className="home__technology">
-                  <Icon className="home__technology-icon" />
+                  <Icon className="home__technology-icon" aria-hidden="true" />
 
                   <span>{technology.name}</span>
                 </div>
               );
             })}
           </div>
+          <p className="ai-tools">AI-assisted development tools: Google Gemini and ChatGPT.</p>
         </section>
       </FadeIn>
 
-      {isContactOpen && <Contact onClose={() => setIsContactOpen(false)} />}
     </>
   );
 };

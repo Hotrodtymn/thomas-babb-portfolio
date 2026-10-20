@@ -1,8 +1,9 @@
-import React, { useState } from "react";
+import React, { useRef, useState } from "react";
 import { NavLink, Link } from "react-router-dom";
 import { FaGithub, FaLinkedin } from "react-icons/fa";
 
 const Nav = ({ onContactClick }) => {
+  const menuButton = useRef(null);
   const [menuOpen, setMenuOpen] = useState(false);
 
   const closeMenu = () => {
@@ -18,7 +19,9 @@ const Nav = ({ onContactClick }) => {
     `nav__link ${isActive ? "nav__link--active" : ""}`;
 
   return (
-    <nav className="nav">
+    <nav className="nav" aria-label="Main navigation" onKeyDown={(event) => {
+      if (event.key === "Escape" && menuOpen) { closeMenu(); menuButton.current.focus(); }
+    }}>
       <div className="nav__container">
         <Link
           to="/"
@@ -35,6 +38,8 @@ const Nav = ({ onContactClick }) => {
           }`}
           onClick={() => setMenuOpen(!menuOpen)}
           aria-label="Toggle navigation menu"
+          ref={menuButton}
+          aria-controls="navigation-links"
           aria-expanded={menuOpen}
         >
           <span></span>
@@ -43,6 +48,7 @@ const Nav = ({ onContactClick }) => {
         </button>
 
         <div
+          id="navigation-links"
           className={`nav__links ${
             menuOpen ? "nav__links--open" : ""
           }`}
@@ -84,7 +90,7 @@ const Nav = ({ onContactClick }) => {
             <a
               href="https://github.com/Hotrodtymn"
               target="_blank"
-              rel="noreferrer"
+              rel="noopener noreferrer"
               aria-label="GitHub"
               className="nav__social-link"
             >
@@ -94,7 +100,7 @@ const Nav = ({ onContactClick }) => {
             <a
               href="https://www.linkedin.com/in/thomasbabbpm/"
               target="_blank"
-              rel="noreferrer"
+              rel="noopener noreferrer"
               aria-label="LinkedIn"
               className="nav__social-link"
             >

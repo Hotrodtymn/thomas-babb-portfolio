@@ -14,7 +14,7 @@ const About = () => {
           <h1>Building for the web.</h1>
 
           <p className="about-page__intro">
-            I'm Thomas Babb, a frontend software developer focused on creating
+            I'm Thomas Babb, a Frontend Developer focused on creating
             responsive, user-friendly web applications.
           </p>
         </div>
@@ -34,21 +34,20 @@ const About = () => {
 
             <p>
               My development experience includes building applications with
-              JavaScript and React, working with APIs, implementing routing,
+              React, JavaScript, TypeScript, and Next.js, integrating REST APIs, implementing routing,
               managing application state, and using Git and GitHub to manage
               projects.
             </p>
 
             <p>
-              I'm continuing to expand my skills by building projects that
-              challenge me to learn new technologies and solve real-world
-              problems.
+              My background in Agile project management and media production
+              informs how I organize work, collaborate, and communicate ideas.
             </p>
 
             <div className="about-page__cta">
               <a
-                href="/assets/Thomas-Babb-Resume.pdf"
-                download
+                href="/assets/ThomasBabb%20Resume.pdf"
+                download="Thomas-Babb-Resume.pdf"
                 className="button button--primary"
               >
                 Download Resume
@@ -87,7 +86,7 @@ const About = () => {
   <span className="about-page__learning-dot"></span>
 
   <div>
-    <strong>Currently learning</strong>
+    <strong>Continuing development</strong>
 
     <p>
       Continuing to deepen my React skills, JavaScript

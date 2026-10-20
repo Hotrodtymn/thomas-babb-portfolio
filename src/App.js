@@ -7,6 +7,7 @@ import {
   Route,
 } from "react-router-dom";
 
+import PageMetadata from "./components/PageMetadata";
 import Nav from "./components/Nav";
 import Footer from "./components/Footer";
 import ScrollToTop from "./components/ScrollToTop";
@@ -32,11 +33,13 @@ function App() {
 
   return (
     <Router>
+      <PageMetadata />
       <ScrollToTop />
 
+      <a href="#main-content" className="skip-link">Skip to content</a>
       <Nav onContactClick={openContact} />
 
-      <main className="main">
+      <main id="main-content" tabIndex={-1} className="main">
         <Routes>
           <Route
             path="/"

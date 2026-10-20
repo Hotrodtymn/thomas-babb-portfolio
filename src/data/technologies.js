@@ -12,10 +12,8 @@ import {
   SiTailwindcss,
   SiNextdotjs,
   SiFirebase,
-  SiStripe,
+  SiTypescript,
   SiVercel,
-  SiGooglegemini,
-  SiChatbot,
 } from "react-icons/si";
 
 const technologies = [
@@ -26,6 +24,10 @@ const technologies = [
   {
     name: "JavaScript",
     icon: FaJs,
+  },
+  {
+    name: "TypeScript",
+    icon: SiTypescript,
   },
   {
     name: "HTML5",
@@ -48,10 +50,6 @@ const technologies = [
     icon: SiFirebase,
   },
   {
-    name: "Stripe",
-    icon: SiStripe,
-  },
-  {
     name: "REST APIs",
     icon: FaCode,
   },
@@ -66,14 +64,6 @@ const technologies = [
   {
     name: "Vercel",
     icon: SiVercel,
-  },
-  {
-    name: "Google Gemini",
-    icon: SiGooglegemini,
-  },
-  {
-    name: "ChatGPT",
-    icon: SiChatbot,
   },
 ];
 

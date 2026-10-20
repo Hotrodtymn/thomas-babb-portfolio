@@ -7,17 +7,17 @@ const projects = [
     type: "Web Application",
     featured: true,
     description:
-      "A responsive web application focused on presenting skin-related results through a clean, user-friendly interface.",
+      "A responsive Next.js application with an image upload workflow, AI-powered skin analysis through a REST API, and clear results presentation.",
     details:
-      "SkinStatic is a frontend web application built with React. The project focuses on creating a responsive user experience, organizing results clearly, and delivering a polished interface across screen sizes.",
-    technologies: ["React", "JavaScript", "CSS"],
+      "SkinStatic is a responsive web application built with Next.js, TypeScript, and Tailwind CSS. Its multi-step experience guides users through uploading an image, requesting AI-powered skin analysis through a REST API, and viewing the results. My work focuses on the frontend workflow, API integration, results presentation, and responsive interface; the analysis is provided by the external service.",
+    technologies: ["Next.js", "TypeScript", "Tailwind CSS", "REST API"],
     image: "/assets/Skintastic/Skintastic_home.png",
     screenshots: [
       "/assets/Skintastic/Skintastic_home.png",
       "/assets/Skintastic/Skintastic_photo.png",
       "/assets/Skintastic/Skintastic_results.png",
     ],
-    github: "https://github.com/Hotrodtymn/Skinstatic-intern.git",
+    github: "https://github.com/Hotrodtymn/Skinstatic-intern",
     live: "https://skinstatic-intern.vercel.app/",
   },
 
@@ -38,7 +38,7 @@ const projects = [
       "/assets/Summarist/For you page.png",
       "/assets/Summarist/Book page.png",
     ],
-    github: "https://github.com/Hotrodtymn/Summarist.git",
+    github: "https://github.com/Hotrodtymn/Summarist",
     live: "https://summarist-ebon.vercel.app/",
   },
 
@@ -59,7 +59,7 @@ const projects = [
       "/assets/Rockstreamers/Search page.png",
       "/assets/Rockstreamers/Video page.png",
     ],
-    github: "https://github.com/Hotrodtymn/youtube-clone.git",
+    github: "https://github.com/Hotrodtymn/Rockstreamers",
     live: "https://youtube-clone-mmn7.vercel.app/",
   },
 

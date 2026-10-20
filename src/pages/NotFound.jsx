@@ -16,14 +16,14 @@ const NotFound = () => {
       <div className="not-found__actions">
         <Link
           to="/"
-          className="home__button home__button--primary"
+          className="button button--primary"
         >
           Back to Home
         </Link>
 
         <Link
           to="/projects"
-          className="home__button home__button--secondary"
+          className="button button--secondary"
         >
           View Projects
         </Link>

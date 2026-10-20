@@ -9,7 +9,7 @@ const services = [
     id: 1,
     title: "Frontend Development",
     description:
-      "Building responsive and interactive web applications with React, JavaScript, HTML, and CSS.",
+      "Building responsive and interactive web applications with React, JavaScript, TypeScript, Next.js, HTML, and CSS.",
     icon: FaCode,
   },
   {

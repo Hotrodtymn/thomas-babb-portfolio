@@ -24,6 +24,8 @@ const ProjectCard = ({ project }) => {
             )}
 
             <img
+              loading="lazy"
+              decoding="async"
               src={project.image}
               alt={project.title}
               onLoad={() => setImageLoaded(true)}
@@ -60,12 +62,12 @@ const ProjectCard = ({ project }) => {
       <div className="project-card__content">
         <div className="project-card__top">
           <div>
-            <Link
+            <h3><Link
               to={`/projects/${project.slug}`}
               className="project-card__title"
             >
               {project.title}
-            </Link>
+            </Link></h3>
 
             <p className="project-card__description">
               {project.description}
@@ -110,7 +112,7 @@ const ProjectCard = ({ project }) => {
               <a
                 href={project.github}
                 target="_blank"
-                rel="noreferrer"
+                rel="noopener noreferrer"
                 className="project-card__link"
                 onClick={(event) =>
                   event.stopPropagation()
@@ -124,7 +126,7 @@ const ProjectCard = ({ project }) => {
               <a
                 href={project.live}
                 target="_blank"
-                rel="noreferrer"
+                rel="noopener noreferrer"
                 className="project-card__link project-card__link--primary"
                 onClick={(event) =>
                   event.stopPropagation()
