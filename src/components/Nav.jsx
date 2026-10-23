@@ -80,7 +80,7 @@ const Nav = ({ onContactClick }) => {
 
           <button
             type="button"
-            className="nav__link nav__contact-button"
+            className="button button--contact nav__contact-button"
             onClick={handleContactClick}
           >
             Contact
