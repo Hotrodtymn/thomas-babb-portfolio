@@ -6,7 +6,6 @@ import ProjectCard from "../components/ProjectCard";
 import Button from "../components/Button";
 import FadeIn from "../components/FadeIn";
 import technologies from "../data/technologies";
-test
 
 const Home = ({ onContactClick }) => {
   const featuredProjects = projects.filter((project) => project.featured);
