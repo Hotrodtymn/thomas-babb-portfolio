@@ -16,7 +16,7 @@ const NotFound = () => {
       <div className="not-found__actions">
         <Link
           to="/"
-          className="button button--primary"
+          className="button button--secondary"
         >
           Back to Home
         </Link>

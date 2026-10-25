@@ -48,7 +48,7 @@ const About = () => {
               <a
                 href="/assets/ThomasBabb%20Resume.pdf"
                 download="Thomas-Babb-Resume.pdf"
-                className="button button--primary"
+                className="button button--secondary"
               >
                 Download Resume
               </a>
@@ -83,17 +83,16 @@ const About = () => {
             </div>
           </div>
           <div className="about-page__learning-note">
-  <span className="about-page__learning-dot"></span>
+            <span className="about-page__learning-dot" aria-hidden="true"></span>
 
-  <div>
-    <strong>Continuing development</strong>
-
-    <p>
-      Continuing to deepen my React skills, JavaScript
-      knowledge, state management, and API integration.
-    </p>
-  </div>
-</div>
+            <div>
+              <strong>Continuing development</strong>
+              <p>
+                Continuing to deepen my React skills, JavaScript
+                knowledge, state management, and API integration.
+              </p>
+            </div>
+          </div>
         </FadeIn>
       </div>
       <FadeIn>
@@ -107,7 +106,7 @@ const About = () => {
           <div className="experience__timeline">
             {experience.map((item) => (
               <article key={item.id} className="experience__item">
-                <div className="experience__marker"></div>
+                <div className="experience__marker" aria-hidden="true"></div>
 
                 <div className="experience__content">
                   <div className="experience__top">
@@ -115,12 +114,19 @@ const About = () => {
                       <h3>{item.role}</h3>
 
                       <p className="experience__company">{item.company}</p>
+                      {item.location && (
+                        <p className="experience__location">{item.location}</p>
+                      )}
                     </div>
 
                     <span className="experience__period">{item.period}</span>
                   </div>
 
-                  <p className="experience__description">{item.description}</p>
+                  <ul className="experience__description experience__responsibilities">
+                    {item.responsibilities.map((responsibility) => (
+                      <li key={responsibility}>{responsibility}</li>
+                    ))}
+                  </ul>
                 </div>
               </article>
             ))}

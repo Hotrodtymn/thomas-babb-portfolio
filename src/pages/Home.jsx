@@ -6,14 +6,13 @@ import ProjectCard from "../components/ProjectCard";
 import Button from "../components/Button";
 import FadeIn from "../components/FadeIn";
 import technologies from "../data/technologies";
-
+test
 
 const Home = ({ onContactClick }) => {
-
   const featuredProjects = projects.filter((project) => project.featured);
 
   return (
-    <>
+    <div className="home-page">
       <section className="home">
         <div className="home__content">
           <p className="home__eyebrow">Frontend Developer</p>
@@ -24,15 +23,15 @@ const Home = ({ onContactClick }) => {
           </h1>
 
           <p className="home__description">
-            I’m a Frontend Developer specializing in React, JavaScript, TypeScript,
-            and Next.js, with additional experience in Agile project management
-            and media production.
+            I’m a Frontend Developer specializing in React, JavaScript,
+            TypeScript, and Next.js, with additional experience in Agile project
+            management and media production.
           </p>
 
           <div className="home__buttons">
-            <Button to="/projects">View My Projects</Button>
+            <Button to="/projects" variant="secondary">View My Projects</Button>
 
-            <Button onClick={onContactClick} variant="secondary">
+            <Button onClick={onContactClick} variant="contact">
               Contact Me
             </Button>
 
@@ -103,11 +102,12 @@ const Home = ({ onContactClick }) => {
               );
             })}
           </div>
-          <p className="ai-tools">AI-assisted development tools: Google Gemini and ChatGPT.</p>
+          <p className="ai-tools">
+            AI-assisted development tools: Google Gemini and ChatGPT.
+          </p>
         </section>
       </FadeIn>
-
-    </>
+    </div>
   );
 };
 

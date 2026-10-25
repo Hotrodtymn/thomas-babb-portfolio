@@ -330,7 +330,7 @@ const ProjectDetails = () => {
                   href={project.live}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="button button--primary"
+                  className="button button--secondary"
                 >
                   View Live Site
                 </a>
