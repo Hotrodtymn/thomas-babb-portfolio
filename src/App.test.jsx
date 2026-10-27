@@ -46,7 +46,7 @@ test('contact traps focus, submits the form and restores focus on Escape', async
   const close = within(dialog).getByRole('button', { name: 'Close contact form' });
   expect(close).toHaveFocus();
   fireEvent.keyDown(close, { key: 'Tab', shiftKey: true });
-  expect(screen.getByRole('button', { name: 'Send Message' })).toHaveFocus();
+  expect(screen.getByRole('button', { name: 'Schedule a Call' })).toHaveFocus();
   fireEvent.change(screen.getByLabelText('Name'), { target: { value: 'Test' } });
   fireEvent.change(screen.getByLabelText('Email'), { target: { value: 'test@example.com' } });
   fireEvent.change(screen.getByLabelText('Message'), { target: { value: 'Hello' } });

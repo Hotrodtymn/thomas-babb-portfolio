@@ -5,6 +5,47 @@ import React, { useEffect, useRef, useState } from "react";
 const EMAILJS_SERVICE_ID = "service_37vvo12";
 const EMAILJS_TEMPLATE_ID = "template_zepbzpv";
 const EMAILJS_PUBLIC_KEY = "CPDpNHh5-XGqxpOZ6";
+const CALENDLY_EVENT_URL = "https://calendly.com/tomleebabb/30min";
+const CALENDLY_SCRIPT_URL = "https://assets.calendly.com/assets/external/widget.js";
+const CALENDLY_STYLESHEET_URL = "https://assets.calendly.com/assets/external/widget.css";
+
+let calendlyScriptPromise;
+
+const loadCalendly = () => {
+  if (window.Calendly) return Promise.resolve(window.Calendly);
+  if (calendlyScriptPromise) return calendlyScriptPromise;
+
+  calendlyScriptPromise = new Promise((resolve, reject) => {
+    if (!document.getElementById("calendly-widget-stylesheet")) {
+      const stylesheet = document.createElement("link");
+      stylesheet.id = "calendly-widget-stylesheet";
+      stylesheet.rel = "stylesheet";
+      stylesheet.href = CALENDLY_STYLESHEET_URL;
+      document.head.appendChild(stylesheet);
+    }
+
+    const existingScript = document.getElementById("calendly-widget-script");
+    if (existingScript) {
+      existingScript.addEventListener("load", () => window.Calendly
+        ? resolve(window.Calendly)
+        : reject(new Error("Calendly loaded without its widget API.")), { once: true });
+      existingScript.addEventListener("error", reject, { once: true });
+      return;
+    }
+
+    const script = document.createElement("script");
+    script.id = "calendly-widget-script";
+    script.src = CALENDLY_SCRIPT_URL;
+    script.async = true;
+    script.onload = () => window.Calendly
+      ? resolve(window.Calendly)
+      : reject(new Error("Calendly loaded without its widget API."));
+    script.onerror = () => reject(new Error("Calendly widget failed to load."));
+    document.body.appendChild(script);
+  });
+
+  return calendlyScriptPromise;
+};
 
 const Contact = ({ onClose }) => {
   const dialogRef = useRef(null);
@@ -20,10 +61,12 @@ const Contact = ({ onClose }) => {
     type: "",
     message: "",
   });
+  const [calendlyError, setCalendlyError] = useState(false);
 
   useEffect(() => {
     const handleEscape = (event) => {
       if (event.key === "Escape") {
+        if (document.querySelector(".calendly-overlay")) return;
         onClose();
       }
     };
@@ -35,6 +78,24 @@ const Contact = ({ onClose }) => {
       document.removeEventListener("keydown", handleEscape);
     };
   }, [onClose]);
+
+  const handleScheduleClick = async () => {
+    setCalendlyError(false);
+
+    try {
+      const calendly = await loadCalendly();
+      if (typeof calendly.initPopupWidget !== "function") {
+        throw new Error("Calendly popup API is unavailable.");
+      }
+      const initialized = calendly.initPopupWidget({ url: CALENDLY_EVENT_URL });
+      if (initialized === false) {
+        throw new Error("Calendly popup could not be initialized.");
+      }
+    } catch (error) {
+      console.error("Calendly widget failed to initialize:", error);
+      setCalendlyError(true);
+    }
+  };
 
   const handleChange = (event) => {
     const { name, value } = event.target;
@@ -284,6 +345,25 @@ const Contact = ({ onClose }) => {
                 {isSending ? "Sending..." : "Send Message"}
               </button>
             </form>
+
+            <section className="contact-modal__schedule" aria-labelledby="schedule-meeting-title">
+              <h3 id="schedule-meeting-title">Schedule a Meeting</h3>
+              <p>
+                Prefer a conversation? Schedule a 30-minute introductory call to discuss opportunities, projects, or collaboration.
+              </p>
+              <button
+                type="button"
+                className="button button--primary"
+                onClick={handleScheduleClick}
+              >
+                Schedule a Call
+              </button>
+              {calendlyError && (
+                <p className="contact-modal__schedule-fallback" role="status" aria-live="polite">
+                  Calendly could not be loaded. You can <a href={CALENDLY_EVENT_URL} target="_blank" rel="noopener noreferrer">schedule directly in a new tab</a>.
+                </p>
+              )}
+            </section>
           </div>
         </div>
       </div>

@@ -34,11 +34,18 @@ export default function useModalFocus(ref, active = true) {
         event.preventDefault(); first.focus();
       }
     };
-    const containFocus = (event) => { if (!dialog.contains(event.target)) focusFirst(); };
-    document.addEventListener("keydown", trap);
+    const isCalendlyTarget = (target) => target?.closest?.(".calendly-overlay, .calendly-popup");
+    const containFocus = (event) => {
+      if (!dialog.contains(event.target) && !isCalendlyTarget(event.target)) focusFirst();
+    };
+    const trapWithCalendly = (event) => {
+      if (isCalendlyTarget(event.target) || document.querySelector(".calendly-overlay")) return;
+      trap(event);
+    };
+    document.addEventListener("keydown", trapWithCalendly);
     document.addEventListener("focusin", containFocus);
     return () => {
-      document.removeEventListener("keydown", trap);
+      document.removeEventListener("keydown", trapWithCalendly);
       document.removeEventListener("focusin", containFocus);
       siblings.forEach((element, index) => { element.inert = previousInert[index]; });
       document.body.style.overflow = previousOverflow;
